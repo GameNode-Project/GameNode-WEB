@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+/* Variables del proyecto */
+@theme {
+
+  /* Paleta de colores */
+  --background: #000000;
+  --card-color: #3a3a3a;
+  --green-neon: #00ff41;
+  --red-neon: #ff0000;
+  --white: #ffffff;
+
+  /* Tipografía */
+  --font-title: "Chakra Petch", sans-serif;
+  --font-body: "Exo 2", sans-serif;
+  --font-ui: "Share Tech Mono", monospace;
+}
+
+body {
+  @apply bg-(--background) m-0 antialiased;
+}
