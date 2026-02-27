@@ -3,7 +3,9 @@ export function renderAside() {
 
   asideContainer.innerHTML = `
     <div class="mb-12">
-      <img src="/src/assets/logo-gamenode.png" alt="GameNode Logo" class="w-24 h-24 mb-2 mx-auto">
+      <a href="/" class="block mb-4">  
+        <img src="/src/assets/logo-gamenode.png" alt="GameNode Logo" class="w-24 h-24 mb-2 mx-auto">
+       </a> 
       <h1 class="text-2xl font-bold text-center text-(--green-neon) tracking-wide">GameNode</h1>
     </div>
 
