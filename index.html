@@ -1,59 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GameNode | Foro</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Exo+2:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="src/style.css">
-
   </head>
   <body class="bg-background-(--background) text-(--green-neon)">
 
     <div class="flex min-h-screen">
         
-        <aside class="w-64 border-r border-card-color hidden lg:flex flex-col p-6 sticky top-0 h-screen font-ui">
-            <div class="mb-12">
-                <h1 class="text-xl font-title text-green-neon uppercase ">
-                    GameNode
-                </h1>
-            </div>
-
-            <nav class="flex-1 space-y-10">
-                <section>
-                    <p class="text-[10px] text-(--green-neon) uppercase tracking-widest mb-4 border-b border-card-color pb-1">Sistemas</p>
-                    <ul class="space-y-4 text-sm font-ui">
-                        
-                    </ul>
-                </section>
-            </nav>
-        </aside>
+        <aside id="aside-container" class="w-64 border-r border-card-color hidden lg:flex flex-col p-6 sticky top-0 h-screen font-ui"></aside>
 
         <div class="flex-1 flex flex-col">
             
-            <header class="p-6 md:p-10 flex flex-col md:row justify-between items-center gap-6">
-                <nav class="flex gap-8 text-sm font-ui uppercase">
-                    <a href="#" class="text-(--green-neon) border-b border-green-neon pb-1">Inicio</a>
-                    <a href="#" class="text-(--green-neon)">Videojuegos</a>
-                    <a href="#" class="text-(--green-neon)">Consolas</a>
-                    <a href="#" class="text-(--green-neon)">Compañia</a>
-                </nav>
-                
-                <div class="flex items-center gap-4 w-full md:w-auto">
-                </div>
-            </header>
+            <header id="header-container" class="p-6 md:p-10 flex flex-col md:row justify-between items-center gap-6"></header>
 
             <main class="flex-1 px-6 md:px-10">
                 <div id="stats-container"></div>
                 <div id="main-grid-container" class="mt-8"></div>
             </main>
 
-            <footer class="p-6 border-t border-card-color font-ui text-[10px] text-(--green-neon) flex justify-between items-center mt-10">
-                <div>&copy; 2026 GameNode</div>
-            </footer>
+            <footer id="footer-container" class="p-6 border-t border-card-color font-ui text-[10px] text-(--green-neon) flex justify-between items-center mt-10"></footer>
         </div>
     </div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
