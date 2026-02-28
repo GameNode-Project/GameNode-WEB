@@ -1,3 +1,5 @@
+import { openModal } from './modal.js';
+
 export function renderHeader() {
   const headerContainer = document.getElementById('header-container');
 
@@ -9,6 +11,15 @@ export function renderHeader() {
     </nav>
     
     <div class="flex items-center gap-4 w-full md:w-auto">
+      <button id="btn-about-us" class="text-xs font-ui text-(--green-neon) uppercase tracking-widest
+      hover:text-black transition-all border border-green-neon px-4 py-2 bg-green-neon/5 hover:bg-(--green-neon) shadow-[0_0_5px_rgba(57,255,20,0.2)] hover:shadow-[0_0_15px_rgba(57,255,20,0.6)]
+      ">
+        About Us
+      </button>
     </div>
   `;
+
+  document.getElementById('btn-about-us').addEventListener('click', () => {
+    openModal('about');
+  });
 } 
