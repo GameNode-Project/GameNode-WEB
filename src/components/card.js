@@ -1,7 +1,7 @@
 export function createCard(item, type) {
 
   const imageSrc = type === 'company' ? item.logo : item.url;
-  const mainTitle = type === 'videoganme' ? item.title : item.name;
+  const mainTitle = type === 'videogame' ? item.title : item.name;
 
   let badgesHTML = '';
   if (type === 'videogame') {
