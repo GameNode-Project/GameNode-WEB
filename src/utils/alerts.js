@@ -46,7 +46,7 @@ export const showError = (title, message) => {
 export const showConfirmDelete = async (itemName) => {
   const result = await CyberAlert.fire({
     icon: 'warning',
-    title: '¿Purgar Registro?',
+    title: '¿Eliminar Registro?',
     html: `Vas a eliminar <b class="text-[#39ff14]">${itemName}</b>.<br/>Esta acción desencadenará un borrado en cascada en la base de datos.`,
     showCancelButton: true,
     confirmButtonText: 'Sí, ejecutar',
@@ -55,7 +55,7 @@ export const showConfirmDelete = async (itemName) => {
     customClass: {
       ...CyberAlert.customClass,
       popup: 'border border-[#ffea00] shadow-[0_0_15px_rgba(255,234,0,0.2)] font-ui rounded-none',
-      confirmButton: 'bg-[#ffea00] text-black font-bold px-6 py-2 ml-2 hover:shadow-[0_0_10px_rgba(255,234,0,0.8)] transition-all uppercase tracking-wider',
+      confirmButton: 'bg-[#ffea00] text-black font-bold px-6 py-2 ml-6 hover:shadow-[0_0_10px_rgba(255,234,0,0.8)] transition-all uppercase tracking-wider',
     }
   });
   
