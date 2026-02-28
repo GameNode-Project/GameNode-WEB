@@ -1,3 +1,5 @@
+import { showSuccess } from "../utils/alerts";
+
 const formTemplates = {
   company: `
     <div class="grid grid-cols-2 gap-4">
@@ -72,8 +74,13 @@ export function openModal(type) {
 
   document.getElementById('dynamic-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert(`Formulario de ${type} enviado. Aquí conectaremos la API`);
     closeModal();
+    
+    showSuccess(
+      'Datos Guardados',
+      `El registro de tipo [${type.toUpperCase()}] ha sido guardado.`
+    )
+    
   });
 }
 
