@@ -45,28 +45,31 @@ const formTemplates = {
   `
 };
 
-export function openModal(type) {
+export function openModal(type, editData = null) {
   const modalRoot = document.getElementById('modal-root');
   
+  const isEdit = editData !== null;
+  
   const titles = {
-    company: 'Añadir Nueva Compañía',
-    console: 'Añadir Nueva Consola',
-    videogame: 'Añadir Nuevo Videojuego',
+    company: isEdit ? 'Editar Compañía' : 'Añadir Nueva Compañía',
+    console: isEdit ? 'Editar Consola' : 'Añadir Nueva Consola',
+    videogame: isEdit ? 'Editar Videojuego' : 'Añadir Nuevo Videojuego',
     about: 'About Us'
   };
 
   const modalWidthClass = type === 'about' ? 'max-w-md' : 'max-w-2xl';
+  
+  const submitButtonText = isEdit ? 'Actualizar Datos' : 'Guardar Datos';
 
   const actionButtons = type === 'about' 
     ? `<div class="mt-8 flex justify-center"><button type="button" id="cancel-modal-btn" class="w-full px-6 py-2 text-sm text-gray-400 hover:text-white border border-gray-600 hover:border-white transition-all uppercase tracking-widest">Cerrar Ventana</button></div>`
     : `<div class="mt-8 flex justify-end gap-4 border-t border-card-color pt-4">
          <button type="button" id="cancel-modal-btn" class="px-4 py-2 text-sm text-gray-400 hover:text-white transition-colors">Cancelar</button>
-         <button type="submit" class="px-6 py-2 text-sm bg-(--green-neon) text-black font-bold rounded hover:shadow-[0_0_10px_rgba(57,255,20,0.8)] transition-all uppercase tracking-widest">Guardar Datos</button>
+         <button type="submit" class="px-6 py-2 text-sm bg-(--green-neon) text-black font-bold rounded hover:shadow-[0_0_10px_rgba(57,255,20,0.8)] transition-all uppercase tracking-widest">${submitButtonText}</button>
        </div>`;
 
   modalRoot.innerHTML = `
     <div id="modal-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex justify-center items-center p-4">
-      
       <div class="bg-gray-900 border border-(--green-neon) shadow-[0_0_15px_rgba(57,255,20,0.3)] rounded-lg w-full ${modalWidthClass} overflow-hidden font-ui animate-[fadeIn_0.2s_ease-out]">
         
         <div class="flex justify-between items-center p-4 border-b border-card-color bg-black/50">
@@ -76,15 +79,22 @@ export function openModal(type) {
 
         <form id="dynamic-form" class="p-6">
           ${formTemplates[type]}
-          
           ${actionButtons}
         </form>
       </div>
     </div>
   `;
 
+  if (isEdit && type !== 'about') {
+    Object.keys(editData).forEach(key => {
+      const input = document.getElementById(key);
+      if (input) {
+        input.value = editData[key];
+      }
+    });
+  }
+
   document.getElementById('close-modal-btn').addEventListener('click', closeModal);
-  
   const cancelBtn = document.getElementById('cancel-modal-btn');
   if(cancelBtn) cancelBtn.addEventListener('click', closeModal);
   
@@ -97,9 +107,10 @@ export function openModal(type) {
     closeModal();
     
     if (type !== 'about') {
+        const accion = isEdit ? 'actualizado' : 'guardado';
         showSuccess(
-          'Datos Guardados',
-          `El registro de tipo [${type.toUpperCase()}] ha sido guardado.`
+          isEdit ? 'Actualización Exitosa' : 'Datos Guardados',
+          `El registro de tipo [${type.toUpperCase()}] ha sido ${accion}.`
         );
     }
   });
