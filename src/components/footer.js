@@ -9,11 +9,11 @@ export function renderFooter() {
           GameNode
         </h2>
         <p class="text-xs opacity-70 max-w-xs font-ui text-gray-400">
-          Catálogo interactivo y API RESTful para la gestión integral de la industria de los videojuegos.
+          Página interactiva y API RESTful para la gestión de un foro relacionado con la industria de los videojuegos.
         </p>
       </div>
 
-      <div class="flex flex-col items-start md:items-end gap-1 text-[10px] font-ui opacity-60 text-gray-400">
+      <div class="flex flex-col items-start md:items-end gap-1 text-[10px] font-ui opacity-60 text-white">
         <p class="tracking-widest uppercase">Stack: Vanilla JS | Vite | Tailwind</p>
         <p>&copy; 2026 GameNode</p>
       </div>
