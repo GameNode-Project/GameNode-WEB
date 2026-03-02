@@ -1,5 +1,5 @@
 import { openModal } from '../components/modal.js';
-import { showConfirmDelete, showToast } from '../utils/alerts.js';
+import { showConfirmDelete, showToast, showError } from '../utils/alerts.js';
 
 import { loadVideogames } from '../api/videogames.js';
 import { loadConsoles } from '../api/consoles.js';
@@ -51,14 +51,64 @@ export function renderHome() {
     const type = btn.getAttribute('data-type');     
     const id = parseInt(btn.getAttribute('data-id')); 
 
+    let endpoint = `${type}`;
+    if (type === 'videogame') endpoint = 'videogames'; 
+    // TODO - Añadir casos para 'console' y 'company' 
+
+    const API_URL = import.meta.env.VITE_API_URL;
+
     if (action === 'edit') {
-      openModal(type, { id });
-    } else if (action === 'delete') {
+      
+      try {
+
+        const response = await fetch(`${API_URL}/${endpoint}/${id}`);
+        
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const jsonResult = await response.json();
+
+        const data = jsonResult.data;
+
+        openModal(type, data);
+
+      } catch (error) {
+        console.error("Error al cargar datos para edición:", error);
+        showError("No se pudieron cargar los datos para editar. Inténtalo de nuevo.");
+      }
+    
+    }
+
+    if (action === 'delete') {
+      
       const isConfirmed = await showConfirmDelete(`Registro #${id}`);
+      
       if (isConfirmed) {
-        // Aquí irá el fetch DELETE 
-        showToast(`Registro ID:${id} eliminado de la base de datos.`);
+        
+        try {
+
+          const respone = await fetch(`${API_URL}/${endpoint}/${id}`, {
+            method: 'DELETE'
+          });
+
+          if (!respone.ok) throw new Error(`HTTP error! status: ${respone.status}`);
+
+          showToast("Registro eliminado exitosamente.");
+
+          document.dispatchEvent(new CustomEvent('reload-data', { detail: type }));
+
+        } catch (error) {
+          console.error("Error al eliminar registro:", error);
+          showError("No se pudo eliminar el registro. Inténtalo de nuevo.");        
+        }
+        
       }
     }
   });
+
+  document.addEventListener('reload-data', (e) => {
+    const typeAffected = e.detail;
+    if (typeAffected === 'videogame') loadVideogames();
+    // TODO Añadir casos para 'console' y 'company'
+  });
+
 }
