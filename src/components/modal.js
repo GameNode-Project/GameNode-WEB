@@ -1,4 +1,4 @@
-import { showSuccess } from "../utils/alerts.js";
+import { showSuccess, showError } from "../utils/alerts.js";
 
 const formTemplates = {
   company: `
@@ -102,17 +102,53 @@ export function openModal(type, editData = null) {
     if (e.target.id === 'modal-backdrop') closeModal();
   });
 
-  document.getElementById('dynamic-form').addEventListener('submit', (e) => {
+  document.getElementById('dynamic-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (type === 'about') {
+        closeModal();
+        return;
+    }
+
+    const formElements = e.target.elements;
+    const payload = {};
+    for (let element of formElements) {
+        if (element.id && element.tagName !== 'BUTTON') {
+            // Convertimos a número si el input es de tipo number (ej: price, year_founded)
+            payload[element.id] = element.type === 'number' ? Number(element.value) : element.value;
+        }
+    }
+
     closeModal();
     
-    if (type !== 'about') {
-        const accion = isEdit ? 'actualizado' : 'guardado';
-        showSuccess(
-          isEdit ? 'Actualización Exitosa' : 'Datos Guardados',
-          `El registro de tipo [${type.toUpperCase()}] ha sido ${accion}.`
-        );
+    try {
+
+      let endpoint = `${type}`;
+      
+      if (type === 'videogame') endpoint = 'videogames';
+      // TODO Añadir endpoints específicos para consoles y companies.
+
+      const API_URL = import.meta.env.VITE_API_URL;
+
+      // Si hay 'editData', es un PUT y pasamos el ID en la URL. Si no, es POST.
+      const url = isEdit ? `${API_URL}/${endpoint}/${editData.id}` : `${API_URL}/${endpoint}`;
+      const method = isEdit ? 'PUT' : 'POST';
+
+      const response = await fetch(url,  {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+    } catch (error) {
+        console.error("Error al enviar el formulario:", error);
+        showError("Error al enviar los datos. Por favor, inténtalo de nuevo.");
     }
+
+    document.dispatchEvent(new CustomEvent('reload-data', { detail: type }));
+
   });
 }
 
