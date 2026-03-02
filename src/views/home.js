@@ -5,6 +5,8 @@ import { loadVideogames } from '../api/videogames.js';
 import { loadConsoles } from '../api/consoles.js';
 import { loadCompanies } from '../api/companies.js';
 
+import { renderDetail } from './detail.js';
+
 export function renderHome() {
   const mainContent = document.getElementById('main-container');
 
@@ -56,6 +58,11 @@ export function renderHome() {
     // TODO - Añadir casos para 'console' y 'company' 
 
     const API_URL = import.meta.env.VITE_API_URL;
+
+    if (action === 'view') {
+      renderDetail(type, id);
+      return;
+    }
 
     if (action === 'edit') {
       
