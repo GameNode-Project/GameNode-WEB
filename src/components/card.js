@@ -22,6 +22,9 @@ export function createCard(item, type) {
          <img src="${imageSrc}" alt="${mainTitle}" class="max-w-full max-h-full object-contain filter group-hover:brightness-125 transition-all duration-500 drop-shadow-[0_0_8px_rgba(255,255,255,0.1)]">
          
          <div class="absolute top-2 right-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button data-action="view" data-type="${type}" data-id="${item.id}" class="bg-gray-900/90 p-2 rounded text-(--green-neon) hover:text-white border border-green-neon/50 hover:border-(--green-neon) hover:shadow-[0_0_10px_rgba(57,255,20,0.8)] transition-all" title="Ver Detalles">
+               <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            </button>
             <button data-action="edit" data-type="${type}" data-id="${item.id}" class="bg-gray-900/90 p-2 rounded text-blue-400 hover:text-white border border-blue-500/50 hover:border-blue-400 hover:shadow-[0_0_10px_rgba(59,130,246,0.8)] transition-all" title="Editar">
                <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
             </button>
