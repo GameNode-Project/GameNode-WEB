@@ -59,7 +59,7 @@ export async function renderDetail(type, id) {
     } // TODO Añadir diseños para console y company
 
     // Renderizamos el contenido en el contenedor principal
-    mainContent.innerHTML = `
+    mainContainer.innerHTML = `
         <div class="animate-[fadeIn_0.3s_ease-out] max-w-6xl mx-auto pt-4 pb-20">
             <button id="back-btn" class="mb-8 text-xs font-ui text-gray-400 hover:text-(--green-neon) transition-colors flex items-center gap-2 uppercase tracking-widest border border-transparent hover:border-(--green-neon)/30 px-4 py-2 rounded">
                 ← Volver
@@ -67,7 +67,7 @@ export async function renderDetail(type, id) {
             ${contentHTML}
         </div>
     `;
-
+ 
     document.getElementById('back-btn').addEventListener('click', async () => {
         const { renderHome } = await import('./home.js');
         renderHome();
