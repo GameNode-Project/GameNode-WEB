@@ -143,7 +143,7 @@ El Frontend consume la API REST de GameNode mediante la API Fetch nativa de JS. 
 
 ## <a name="licecia"></a>📄 Licencia
 
-Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](./LICENSE) para más detalles.
 
 ---
 *Desarrollado para el proyecto de 2ªEV Desarrollo de Aplicaciones Web (Frontend).*
