@@ -16,7 +16,8 @@ export async function renderDetail(type, id) {
     let endpoint = `${type}`;
 
     if (type === 'videogame') endpoint = 'videogames';
-    // TODO Añadir endpoints para console y company
+    else if (type === 'console') endpoint = 'consoles';
+    // TODO Añadir endpoints para y company
 
     const API_URL = import.meta.env.VITE_API_URL;
     const response = await fetch(`${API_URL}/${endpoint}/${id}`);
