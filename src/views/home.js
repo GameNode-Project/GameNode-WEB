@@ -54,8 +54,9 @@ export function renderHome() {
     const id = parseInt(btn.getAttribute('data-id')); 
 
     let endpoint = `${type}`;
-    if (type === 'videogame') endpoint = 'videogames'; 
-    // TODO - Añadir casos para 'console' y 'company' 
+    if (type === 'videogame') endpoint = 'videogames';
+    else if (type === 'console') endpoint = 'consoles';
+    // TODO - Añadir casos para 'company' 
 
     const API_URL = import.meta.env.VITE_API_URL;
 
@@ -115,7 +116,8 @@ export function renderHome() {
   document.addEventListener('reload-data', (e) => {
     const typeAffected = e.detail;
     if (typeAffected === 'videogame') loadVideogames();
-    // TODO Añadir casos para 'console' y 'company'
+    else if (typeAffected === 'console') loadConsoles();
+    // TODO Añadir casos para 'company'
   });
 
 }
