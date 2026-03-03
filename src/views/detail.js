@@ -57,7 +57,32 @@ export async function renderDetail(type, id) {
         </div>
       `;
 
-    } // TODO Añadir diseños para console y company
+    }
+
+    else if (type === 'console') {
+      contentHTML = `
+        <div class="flex flex-col md:flex-row gap-8 bg-black/40 border border-card-color p-8 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <div class="w-full md:w-1/3 flex items-center justify-center p-4 bg-gray-900/50 rounded-lg border border-(--green-neon)/30">
+                <img src="${item.url}" alt="${item.name}" class="w-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]" />
+            </div>
+            
+            <div class="flex-1 text-gray-300 font-ui flex flex-col justify-between">
+                <div>
+                    <h1 class="text-4xl font-title text-(--green-neon) uppercase mb-2 tracking-widest drop-shadow-[0_0_8px_rgba(57,255,20,0.6)]">${item.name}</h1>
+                    <p class="text-sm text-gray-400 mb-6 uppercase tracking-wider">Fabricado por: <span class="text-white">${item.company_name || 'ID ' + item.company_id}</span></p>
+                    
+                    <p class="mb-8 text-lg leading-relaxed text-gray-300">${item.description}</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 bg-black/60 p-6 rounded border border-card-color text-sm">
+                    <p><span class="text-(--green-neon) block mb-1 uppercase text-[10px] tracking-widest">Lanzamiento</span> ${item.release_date.split('T')[0]}</p>
+                    <p><span class="text-(--green-neon) block mb-1 uppercase text-[10px] tracking-widest">Estado</span> <span class="text-white">Sistema en Catálogo</span></p>
+                </div>
+            </div>
+        </div>
+      `;
+    }
+     // TODO Añadir diseños para y company
 
     // Renderizamos el contenido en el contenedor principal
     mainContainer.innerHTML = `
