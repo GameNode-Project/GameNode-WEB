@@ -17,7 +17,7 @@ export async function loadCompanies() {
     const API_URL = import.meta.env.VITE_API_URL;
     const response = await fetch(`${API_URL}/companies`);
 
-    if (!response.ok) throw new Error('HTTP error! status: ${response.status}');
+    if (!response.ok) {throw new Error(`HTTP error! status: ${response.status}`)}
 
     const jsonResult = await response.json();
     const companies = jsonResult.data;

@@ -126,7 +126,8 @@ export function openModal(type, editData = null) {
       let endpoint = `${type}`;
       
       if (type === 'videogame') endpoint = 'videogames';
-      // TODO Añadir endpoints específicos para consoles y companies.
+      else if (type === 'console') endpoint = 'consoles';
+      else if (type === 'company') endpoint = 'companies';
 
       const API_URL = import.meta.env.VITE_API_URL;
 
