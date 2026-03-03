@@ -1,110 +1,151 @@
-# **🎮 GameNode - Foro de Videojuegos**
+# GameNode 
 
-## Proceso de Instalación
+<div align="center">
 
-```bash
-# Clonamos el repositorio:
-git clone https://github.com/GameNode-Project/GameNode-Web.git 
+<img src="./public/logo-gamenode.png" alt="GameNode Logo" width="250"/>
 
-# Una vez clonado, accedemos a la carpeta:
-cd GameNode-Web
+**GameNode Web para la gestión integral de un catálogo y foro de videojuegos, consolas y compañias.**
 
-# Una vez dentro del proyecto, instalamos las dependencias:
-npm install
-```
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-> [!IMPORTANT]
-> Si no tienes instalada la extensión oficial de Tailwind CSS, debes instalarla, te debería aparecer un panel en la parte derecha de debajo de tu pantalla para instalarla.
+[Despliegue en Producción](#produccion) •
+[Stack Tecnológico](#stack) •
+[Instalación y Entorno Local](#instalacion) •
+[Arquitectura del Proyecto](#arquitectura) •
+[Integración con la API](#integracion) •
+[Contribuciones y Flujo de Trabajo](#contribuciones)
 
-## Flujo de Git
-
-- Cuando clonamos el repositorio, **git descarga todas las ramas que existen en remoto. Por defecto, aterrizarás en la main**.
-
-- Como no tocamos la rama main, cambiamos a rama de desarrollo **dev**:
-```bash
-git switch dev
-```
-
-- Git detecta que existe una rama llamada **dev** en remoto, por lo que crea tu rama dev en local, la conecta con la del servidor y cambia todos para que se ajuste a lo que haya en dev.
-
-- Ya con nuestra rama **dev** correctamente, vamos trabajando con ramas: 
-```bash
-# Creamos la rama de la nueva funcionalidad que queramos implementar
-git checkout -b feature/... # En inglés
+</div>
 
 ---
 
-# Hacemos los commit en esta rama feature/...
-git add . # O le damos al + para añadir todos los cambios en VSCode
-git commit -m "" # En inglés o que genere el mensaje VSCode
-git push origin feature/... # O le damos a publish branch en VSCODE
+## 📋 Descripción
 
-```
+GameNode Web es el cliente frontend oficial de la plataforma GameNode. Construido enteramente en **Vanilla JavaScript (ES6+)**
 
-- Cuando terminemos, creamos el Pull Request desde GitHub siguiendo estos pasos: 
+El proyecto implementa una **Arquitectura Modular (DRY)**, delegación de eventos global y un sistema de estado reactivo basado en **Custom Events**, lo que permite una interfaz dinámica y fluida para gestionar el CRUD completo de Videojuegos, Consolas y Compañías.
 
-```
-base: dev || compare: feature/...
-```
+## <a name="produccion"></a>🚀 Despliegue en Producción (Live Demo)
 
-```
-Nos añadimos como creador: clickamos en assign yourself en el cuadro de la derecha que pone ASSIGNEES
-```
+La aplicación web está desplegada de forma continua y automatizada en **Vercel**, consumiendo directamente la API en Producción.
 
-```
-Nos añadimos como revisores: clickamos en el icono de ajustes en el cuadro de la derecha que pone REVIEWERS
-```
+* **URL del Frontend:** [`https://gamenode-web.vercel.app/`](https://gamenode-web.vercel.app/)*
+* **API Consumida (Railway):** [`https://gamenode-api.up.railway.app`](https://gamenode-api.up.railway.app)
 
-```
-Añadimos la etiqueta correspondiente: clickamos en el icono de ajustes en el cuadro de la derecha que pone LABELS
-  - Si añadimos una funcionalidad: enhancement
-  - Si añadimos un cambio en la documentación: documentation
-```
+## <a name="stack"></a>🛠️ Stack Tecnológico
 
-```
-Los que esten de revisores revisan el codigo.
-Para revisar el codigo: 
-Para revisar a un compañero:
+* **Core:** HTML5, CSS3, Vanilla JavaScript.
+* **Entorno de Desarrollo y Build:** Vite.
+* **Estilos:** Tailwind CSS v4 .
+* **UI/UX y Alertas:** SweetAlert2.
+* **Despliegue (CI/CD):** Vercel.
 
-  1. git fetch origin (Actualizar lista de ramas).
+## <a name="instalacion"></a>⚙️ Instalación y Entorno Local
 
-  2. git switch nombre-rama-compañero (Cambiar a su código).
+Para levantar este proyecto frontend en tu entorno local, sigue estos pasos:
 
-  3. npm install (IMPORTANTE: Asegurar dependencias).
+### 1. Prerrequisitos
 
-  4. npm run dev (Probar el codigo)
+Asegúrate de tener instalado:
+* [Node.js](https://nodejs.org/) (v20 o superior).
+* Git.
 
-Si está todo bien, aceptamos el Pull Request y BORRAMOS LA RAMA.
+### 2. Clonar el repositorio
 
-Si hay algun fallo, pones un comentario con los cambios sugeridos y quien haya creado el pull request lo corrige, el pull request se actualiza automaticamente con los nuevos cambios. Y cuando este correcto el revisor lo acepta
-
-  - Una vez probado y aceptado volvemos a nuestra rama
-  git switch nombre-de-tu-rama
-
-  - Y eliminamos la rama del compañero al cual estavamos revisando
-  git branch -d nombre-rama-compañero
-
-```
-
-- Cuando se acepta un Pull Request: 
 ```bash
-# Volvemos a la rama dev
-git switch dev
-
-# Tremos los cambios que acabamos de mergear a dev en remoto a nuestro local
-git pull origin dev
-
-# Borramos la rama feature/... ya que aunque la hayamos borrado del remoto (GitHub) la rama sigue en local
-git branch -d feature/...
+git clone [https://github.com/TU-USUARIO/gamenode-web.git](https://github.com/TU-USUARIO/gamenode-web.git)
+cd gamenode-web
 ```
 
-> [!CAUTION]
-> Bajar siempre los cambios del remoto a dev antes de hacer un pull request y antes de ponerse a trabajar:
+### 3. Instalar dependencias
 
-  1.  Ve a dev y actualiza: git switch dev + git pull origin dev
+```bash
+npm install
+```
 
-  2. Vuelve a tu rama: git switch feature/mi-rama
+### 4. Configurar el Entorno (Variables de Entorno)
 
-  3. Fusiona lo nuevo: git merge dev
+Vite requiere un archivo .env en la raíz del proyecto para leer variables mediante import.meta.env. Duplica el archivo de ejemplo:
 
-  4. Si hay conflictos, resuélvelos en local antes de subir.
+```bash
+cp .env.example .env
+```
+
+Edita el archivo .env y asegúrate de apuntar a la API correcta (Local o Producción):
+
+- Para desarrollo local con la API en tu máquina:
+**VITE_API_URL=http://localhost:8080**
+
+- Para conectarse a la API de producción:
+**VITE_API_URL=[https://gamenode-api.up.railway.app](https://gamenode-api.up.railway.app)**
+
+### 5. Iniciar el Servidor de Desarrollo
+
+```bash
+npm run dev
+```
+
+La aplicación estará disponible en **http://localhost:5173** 
+
+## <a name="arquitectura"></a>🏗️ Arquitectura del Proyecto
+
+El código fuente sigue un patrón estructural estricto para garantizar la escalabilidad y evitar el acoplamiento:
+
+```plaintext
+src/
+ ├── api/                   # Lógica de peticiones HTTP (GET) segregada por entidad
+ │    ├── companies.js
+ │    ├── consoles.js
+ │    └── videogames.js
+ ├── assets/                # Recursos estáticos (Imágenes, iconos)
+ ├── components/            # Componentes de UI reutilizables
+ │    ├── card.js           # Generador de tarjetas de producto
+ │    ├── header.js         # Navegación 
+ │    └── modal.js          # Motor Genérico de Formularios (POST/PUT)
+ ├── utils/                 # Helpers y configuración centralizada
+ │    └── alerts.js         # Patrón Facade para SweetAlert2 (Diseño Neón)
+ ├── views/                 # Controladores de vista y manipulación del DOM
+ │    ├── detail.js         # Vista de Detalles Dinámica 
+ │    └── home.js           # Layout Principal 
+ ├── main.js                # Entry point de Vite y orquestador principal
+ └── style.css              # Estilos base y directivas de Tailwind
+ ```
+
+### 🧠 Patrones Destacados Implementados
+
+- Delegación de Eventos: Los eventos **Click** de botones repetitivos (Editar, Borrar, Ver) se gestionan desde el contenedor principal, optimizando la memoria del navegador.
+
+- Uso de document.dispatchEvent(new CustomEvent()) para desacoplar componentes. Al crear un elemento, el modal lanza el evento reload-data, y la vista se actualiza sin recargar la página.
+
+- Lógica unificada de POST/PUT/DELETE que pluraliza URLs dinámicamente según el atributo data-type.
+
+## <a name="integracion"></a>📡 Integración con la API
+
+El Frontend consume la API REST de GameNode mediante la API Fetch nativa de JS. Soporta de forma integral:
+
+* GET: Listados generales y obtención por ID para la vista de detalle.
+
+* POST / PUT: Sincronización automática de formularios en el modal según el modo (Creación vs Edición).
+
+* DELETE: Advertencia visual para borrados en cascada.
+
+- Loading States: Spinners asíncronos para evitar bloqueos de la interfaz durante el intercambio de red.
+
+## <a name="contribuciones"></a> ✨ Contribuciones y Flujo de Trabajo
+
+- La rama main contiene el código de despliegue en Vercel.
+
+- La rama dev es la rama de desarrollo principal.
+
+
+## <a name="licecia"></a>📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+
+---
+*Desarrollado para el proyecto de 2ªEV Desarrollo de Aplicaciones Web (Frontend).*
+
+
