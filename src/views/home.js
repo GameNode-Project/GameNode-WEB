@@ -117,7 +117,7 @@ export function renderHome() {
     const typeAffected = e.detail;
     if (typeAffected === 'videogame') loadVideogames();
     else if (typeAffected === 'console') loadConsoles();
-    // TODO Añadir casos para 'company'
+    else if (typeAffected === 'company') loadCompanies();
   });
 
 }
