@@ -17,7 +17,7 @@ export async function renderDetail(type, id) {
 
     if (type === 'videogame') endpoint = 'videogames';
     else if (type === 'console') endpoint = 'consoles';
-    // TODO Añadir endpoints para y company
+    else if (type === 'company') endpoint = 'companies';
 
     const API_URL = import.meta.env.VITE_API_URL;
     const response = await fetch(`${API_URL}/${endpoint}/${id}`);
@@ -82,8 +82,31 @@ export async function renderDetail(type, id) {
         </div>
       `;
     }
-     // TODO Añadir diseños para y company
+    else if (type === 'company') {
+      contentHTML = `
+        <div class="flex flex-col md:flex-row gap-8 bg-black/40 border border-card-color p-8 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <div class="w-full md:w-1/3 flex items-center justify-center p-8 bg-gray-900/80 rounded-lg border border-card-color shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                <img src="${item.logo}" alt="${item.name}" class="w-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" />
+            </div>
+            
+            <div class="flex-1 text-gray-300 font-ui flex flex-col justify-between">
+                <div>
+                    <h1 class="text-4xl font-title text-(--green-neon) uppercase mb-2 tracking-widest drop-shadow-[0_0_8px_rgba(57,255,20,0.6)]">${item.name}</h1>
+                    <p class="text-sm text-gray-400 mb-6 uppercase tracking-wider">Sede central: <span class="text-white">${item.country}</span></p>
+                    
+                    <p class="mb-8 text-lg leading-relaxed text-gray-300">${item.description}</p>
+                </div>
 
+                <div class="grid grid-cols-2 gap-4 bg-black/60 p-6 rounded border border-card-color text-sm">
+                    <p><span class="text-(--green-neon) block mb-1 uppercase text-[10px] tracking-widest">Año de Fundación</span> <span class="text-white font-bold">${item.year_founded}</span></p>
+                    <p><span class="text-(--green-neon) block mb-1 uppercase text-[10px] tracking-widest">Enlace Oficial</span> 
+                       <a href="${item.website}" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors underline decoration-blue-500/50 hover:decoration-blue-300">Visitar Portal</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+      `;
+    }
     // Renderizamos el contenido en el contenedor principal
     mainContainer.innerHTML = `
         <div class="animate-[fadeIn_0.3s_ease-out] max-w-6xl mx-auto pt-4 pb-20">
