@@ -58,8 +58,6 @@ export function renderHome() {
     else if (type === 'console') endpoint = 'consoles';
     // TODO - Añadir casos para 'company' 
 
-
-
     const API_URL = import.meta.env.VITE_API_URL;
 
     if (action === 'view') {
@@ -118,7 +116,8 @@ export function renderHome() {
   document.addEventListener('reload-data', (e) => {
     const typeAffected = e.detail;
     if (typeAffected === 'videogame') loadVideogames();
-    // TODO Añadir casos para 'console' y 'company'
+    else if (typeAffected === 'console') loadConsoles();
+    // TODO Añadir casos para 'company'
   });
 
 }
