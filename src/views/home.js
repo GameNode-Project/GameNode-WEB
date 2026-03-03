@@ -56,7 +56,7 @@ export function renderHome() {
     let endpoint = `${type}`;
     if (type === 'videogame') endpoint = 'videogames';
     else if (type === 'console') endpoint = 'consoles';
-    // TODO - Añadir casos para 'company' 
+    else if (type === 'company') endpoint = 'companies';
 
     const API_URL = import.meta.env.VITE_API_URL;
 
