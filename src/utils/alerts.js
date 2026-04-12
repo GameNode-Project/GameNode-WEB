@@ -55,7 +55,8 @@ export const showConfirmDelete = async (itemName) => {
     customClass: {
       ...CyberAlert.customClass,
       popup: 'border border-[#ffea00] shadow-[0_0_15px_rgba(255,234,0,0.2)] font-ui rounded-none',
-      confirmButton: 'bg-[#ffea00] text-black font-bold px-6 py-2 ml-6 hover:shadow-[0_0_10px_rgba(255,234,0,0.8)] transition-all uppercase tracking-wider',
+      confirmButton: 'bg-[#ffea00] text-black font-bold px-6 py-2 ml-8 hover:shadow-[0_0_10px_rgba(255,234,0,0.8)] transition-all uppercase tracking-wider',
+      cancelButton: 'bg-transparent text-gray-400 border border-gray-600 px-6 py-2 mr-8 hover:text-white hover:border-white transition-all uppercase tracking-wider',
     }
   });
   
@@ -77,5 +78,16 @@ export const showToast = (message) => {
     customClass: {
       popup: 'border border-[#39ff14] font-ui rounded-none',
     }
+  });
+};
+
+// Alerta de Demo
+export const showGuestAlert = () => {
+  Swal.fire({
+    icon: 'info',
+    title: 'Modo Demo',
+    html: 'Esta es una versión de demostración segura.<br><br>La función para <b>crear, editar o eliminar</b> datos está deshabilitada, pero puedes explorar la interfaz libremente.',
+    confirmButtonColor: '#3b82f6', 
+    confirmButtonText: 'Entendido'
   });
 };
