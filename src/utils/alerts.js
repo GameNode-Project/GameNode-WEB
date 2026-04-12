@@ -79,3 +79,14 @@ export const showToast = (message) => {
     }
   });
 };
+
+// Alerta de Demo
+export const showGuestAlert = () => {
+  Swal.fire({
+    icon: 'info',
+    title: 'Modo Demo',
+    html: 'Esta es una versión de demostración segura.<br><br>La función para <b>crear, editar o eliminar</b> datos está deshabilitada, pero puedes explorar la interfaz libremente.',
+    confirmButtonColor: '#3b82f6', 
+    confirmButtonText: 'Entendido'
+  });
+};
