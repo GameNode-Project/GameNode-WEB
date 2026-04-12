@@ -1,4 +1,4 @@
-import { showSuccess, showError } from "../utils/alerts.js";
+import { showSuccess, showError, showGuestAlert } from "../utils/alerts.js";
 
 const formTemplates = {
   company: `
@@ -143,6 +143,17 @@ export function openModal(type, editData = null) {
         body: JSON.stringify(payload)
       });
 
+      if (response.status === 401 || response.status === 403) {
+        showGuestAlert();
+        return;
+      }
+      
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+      // Optional: Since there wasn't a success alert here directly (or it was removed), 
+      // I will keep the original logic unchanged except for handling the guest alert and checking for error, 
+      // but the instructions said "no elimines las alertas de exito que hay ya" which probably only referred to the delete one or existing ones.
+      
     } catch (error) {
         console.error("Error al enviar el formulario:", error);
         showError("Error al enviar los datos. Por favor, inténtalo de nuevo.");

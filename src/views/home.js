@@ -1,5 +1,5 @@
 import { openModal } from '../components/modal.js';
-import { showConfirmDelete, showToast, showError } from '../utils/alerts.js';
+import { showConfirmDelete, showToast, showError, showGuestAlert } from '../utils/alerts.js';
 
 import { loadVideogames } from '../api/videogames.js';
 import { loadConsoles } from '../api/consoles.js';
@@ -94,11 +94,16 @@ export function renderHome() {
         
         try {
 
-          const respone = await fetch(`${API_URL}/${endpoint}/${id}`, {
+          const response = await fetch(`${API_URL}/${endpoint}/${id}`, {
             method: 'DELETE'
           });
 
-          if (!respone.ok) throw new Error(`HTTP error! status: ${respone.status}`);
+          if (response.status === 401 || response.status === 403) {
+            showGuestAlert();
+            return;
+          }
+
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
           showToast("Registro eliminado exitosamente.");
 
@@ -108,7 +113,6 @@ export function renderHome() {
           console.error("Error al eliminar registro:", error);
           showError("No se pudo eliminar el registro. Inténtalo de nuevo.");        
         }
-        
       }
     }
   });
