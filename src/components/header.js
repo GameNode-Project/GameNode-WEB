@@ -7,7 +7,7 @@ export function renderHeader() {
     <div class="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
       
       <a href="#" class="flex flex-col items-center justify-center gap-1 hover:drop-shadow-[0_0_8px_rgba(57,255,20,0.8)] transition-all">
-        <img src="/src/assets/logo-gamenode.png" alt="GameNode Logo" class="w-10 h-10 object-contain">
+        <img src="/logo-gamenode.png" alt="GameNode Logo" class="w-10 h-10 object-contain">
         <h1 class="text-sm font-bold text-center text-(--green-neon) tracking-widest font-title uppercase">GameNode</h1>
       </a>
 
